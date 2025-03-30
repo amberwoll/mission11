@@ -27,6 +27,7 @@ function BookList() {
 
   return (
     <>
+      <h1>Bookstore</h1>
       <label>Sort order:</label>
       <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
         <option value="none">Default</option>
