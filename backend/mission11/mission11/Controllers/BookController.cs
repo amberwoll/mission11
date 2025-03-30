@@ -17,7 +17,7 @@ namespace mission11.Controllers
             _bookContext = temp;
         }
         
-        [HttpGet(Name = "GetBook")]
+        [HttpGet("AllBooks")]
         public IEnumerable<Book> Get()
         {
             var bookList = _bookContext.Books
