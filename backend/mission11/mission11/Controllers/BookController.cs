@@ -18,12 +18,20 @@ namespace mission11.Controllers
         }
         
         [HttpGet("AllBooks")]
-        public IEnumerable<Book> Get()
+        public IActionResult GetBooks(int pageHowMany, int pageNum)
         {
             var bookList = _bookContext.Books
-                .ToList(); // makes list of teams
-    
-            return bookList;
+                .Skip((pageNum - 1) * pageHowMany)
+                .Take(pageHowMany)
+                .ToList(); // makes list of books
+            
+            var totalBooks = _bookContext.Books.Count();
+            // OK converts it to json
+            return Ok(new
+            {
+                Books = bookList,
+                TotalBooks = totalBooks
+            });
         }
 
     }
