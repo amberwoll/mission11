@@ -17,22 +17,36 @@ namespace mission11.Controllers
             _bookContext = temp;
         }
         
+        
         [HttpGet("AllBooks")]
-        public IActionResult GetBooks(int pageHowMany, int pageNum)
+        public IActionResult GetBooks(int pageHowMany = 10, int pageNum = 1, string sortOrder = "none")
         {
-            var bookList = _bookContext.Books
+            var booksQuery = _bookContext.Books.AsQueryable();
+
+            // Apply sorting if sortOrder is not "none"
+            if (sortOrder.ToLower() == "asc")
+            {
+                booksQuery = booksQuery.OrderBy(b => b.Title);
+            }
+            else if (sortOrder.ToLower() == "desc")
+            {
+                booksQuery = booksQuery.OrderByDescending(b => b.Title);
+            }
+
+            var bookList = booksQuery
                 .Skip((pageNum - 1) * pageHowMany)
                 .Take(pageHowMany)
-                .ToList(); // makes list of books
-            
+                .ToList();
+
             var totalBooks = _bookContext.Books.Count();
-            // OK converts it to json
+
             return Ok(new
             {
                 Books = bookList,
                 TotalBooks = totalBooks
             });
         }
+
 
     }
 }

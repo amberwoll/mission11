@@ -7,25 +7,32 @@ function BookList() {
   const [pageNum, setPageNum] = useState<number>(1);
   const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
+  const [sortOrder, setSortOrder] = useState<string>('none');
 
   // Fetching bowlers and filtering them based on Team Name (Marlins or Sharks)
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await fetch(
-        `https://localhost:7000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}`
-      );
+      const url = `https://localhost:7000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}`;
+
+      const response = await fetch(url);
       const data = await response.json();
 
       setBooks(data.books);
       setTotalItems(data.totalBooks);
-      setTotalPages(Math.ceil(totalItems / pageSize));
+      setTotalPages(Math.ceil(data.totalBooks / pageSize));
     };
 
     fetchBooks();
-  }, [pageSize, pageNum]);
+  }, [pageSize, pageNum, totalItems, sortOrder]);
 
   return (
     <>
+      <label>Sort order:</label>
+      <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+        <option value="none">Default</option>
+        <option value="asc">A-Z</option>
+        <option value="desc">Z-A</option>
+      </select>
       {books.map((book) => (
         <div id="bookCard" className="card" key={book.bookID}>
           <h3 className="card-title">{book.title}</h3>
@@ -57,18 +64,36 @@ function BookList() {
       <label>Results per page: </label>
       <select
         value={pageSize}
-        onChange={(p) => setPageSize(Number(p.target.value))}
+        onChange={(p) => {
+          setPageSize(Number(p.target.value));
+          setPageNum(1);
+        }}
       >
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
       </select>
 
-      <button>Previous</button>
+      <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
+        Previous
+      </button>
 
-      <button></button>
+      {[...Array(totalPages)].map((_, i) => (
+        <button
+          key={i + 1}
+          onClick={() => setPageNum(i + 1)}
+          disabled={pageNum === i + 1}
+        >
+          {i + 1}
+        </button>
+      ))}
 
-      <button>Next</button>
+      <button
+        disabled={pageNum === totalPages}
+        onClick={() => setPageNum(pageNum + 1)}
+      >
+        Next
+      </button>
     </>
   );
 }
