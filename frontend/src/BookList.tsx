@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { book } from './types/book';
 
-function BookList() {
+function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<book[]>([]);
   const [pageSize, setPageSize] = useState<number>(10);
   const [pageNum, setPageNum] = useState<number>(1);
@@ -12,7 +12,11 @@ function BookList() {
   // Fetching bowlers and filtering them based on Team Name (Marlins or Sharks)
   useEffect(() => {
     const fetchBooks = async () => {
-      const url = `https://localhost:7000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}`;
+      const categoryParams = selectedCategories
+        .map((cat) => `bookCats=${encodeURIComponent(cat)}`)
+        .join('&');
+
+      const url = `https://localhost:7000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}${selectedCategories.length ? `&${categoryParams}` : ''}`;
 
       const response = await fetch(url);
       const data = await response.json();
@@ -23,11 +27,10 @@ function BookList() {
     };
 
     fetchBooks();
-  }, [pageSize, pageNum, totalItems, sortOrder]);
+  }, [pageSize, pageNum, totalItems, sortOrder, selectedCategories]);
 
   return (
     <>
-      <h1>Bookstore</h1>
       <label>Sort order:</label>
       <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
         <option value="none">Default</option>
