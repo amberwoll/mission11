@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { book } from './types/book';
+import { book } from '../types/book';
+import { useNavigate } from 'react-router-dom';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<book[]>([]);
@@ -8,6 +9,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [sortOrder, setSortOrder] = useState<string>('none');
+  const navigate = useNavigate();
 
   // Fetching bowlers and filtering them based on Team Name (Marlins or Sharks)
   useEffect(() => {
@@ -60,6 +62,12 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                 <strong>Price:</strong> ${book.price}
               </li>
             </ul>
+            <button
+              className="btn btn-success"
+              onClick={() => navigate(`/donate/${book.title}`)}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       ))}
