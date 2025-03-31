@@ -2862,11 +2862,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/mission11.csproj",
+      "projectUniqueName": "/Users/amberwoll/Documents/GitHub/mission11/backend/mission11/mission11/mission11.csproj",
       "projectName": "mission11",
-      "projectPath": "/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/mission11.csproj",
+      "projectPath": "/Users/amberwoll/Documents/GitHub/mission11/backend/mission11/mission11/mission11.csproj",
       "packagesPath": "/Users/amberwoll/.nuget/packages/",
-      "outputPath": "/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/obj/",
+      "outputPath": "/Users/amberwoll/Documents/GitHub/mission11/backend/mission11/mission11/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/amberwoll/.nuget/NuGet/NuGet.Config"
