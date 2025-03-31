@@ -47,6 +47,16 @@ namespace mission11.Controllers
             });
         }
 
+        [HttpGet("GetBookTypes")]
+        public IActionResult GetBookTypes()
+        {
+            var bookTypes = _bookContext.Books
+                .Select(b => b.Category)
+                .Distinct()
+                .ToList();
+            return Ok(bookTypes);
 
+
+        }
     }
 }
