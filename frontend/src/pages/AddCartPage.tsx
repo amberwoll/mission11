@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import WelcomeBand from '../components/WelcomeBand';
 
-function CartPage() {
+function AddCartPage() {
   const navigate = useNavigate();
   const { title } = useParams();
 
@@ -12,7 +12,7 @@ function CartPage() {
       <div>
         <label htmlFor="bookQuantity">Enter quantity: </label>
         <input id="bookQuantity" type="number" defaultValue={1} min={1} />
-        <button>Add to Cart</button>
+        <button onClick={() => navigate('/viewcart')}>Add to Cart</button>
       </div>
 
       <button onClick={() => navigate(-1)}>Continue Shopping</button>
@@ -20,4 +20,4 @@ function CartPage() {
   );
 }
 
-export default CartPage;
+export default AddCartPage;
