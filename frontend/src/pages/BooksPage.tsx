@@ -2,6 +2,7 @@ import { useState } from 'react';
 import BookList from '../components/BookList';
 import CategoryFilter from '../components/CategoryFilter';
 import WelcomeBand from '../components/WelcomeBand';
+import CartSummary from '../components/CartSummary';
 
 function BooksPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -9,6 +10,7 @@ function BooksPage() {
   return (
     <>
       <div className="container mt-4">
+        <CartSummary />
         <WelcomeBand />
         <div className="row">
           <div className="col-md-4">
