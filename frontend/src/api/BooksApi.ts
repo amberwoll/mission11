@@ -8,6 +8,7 @@ interface FetchBooksResponse {
 export const fetchBooks = async (
   pageSize: number,
   pageNum: number,
+  sortOrder: string,
   selectedCategories: string[]
 ): Promise<FetchBooksResponse> => {
   try {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { book } from '../types/book';
 import { useNavigate } from 'react-router-dom';
-import { fetchBooks } from '../api/BooksApi';
+import { fetchBooks } from '../api/BooksAPI';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<book[]>([]);
@@ -18,7 +18,12 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     const loadBooks = async () => {
       try {
         setLoading(true);
-        const data = await fetchBooks(pageSize, pageNum, selectedCategories);
+        const data = await fetchBooks(
+          pageSize,
+          pageNum,
+          sortOrder,
+          selectedCategories
+        );
 
         setBooks(data.books);
         setTotalPages(Math.ceil(data.totalNumBooks / pageSize));
