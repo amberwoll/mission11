@@ -13,7 +13,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetching bowlers and filtering them based on Team Name (Marlins or Sharks)
   useEffect(() => {
     const loadBooks = async () => {
       try {
