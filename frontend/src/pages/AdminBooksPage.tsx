@@ -17,7 +17,8 @@ const AdminBooksPage = () => {
   useEffect(() => {
     const loadBooks = async () => {
       try {
-        const data = await fetchBooks(10, 1, 'none', []);
+        const data = await fetchBooks(pageSize, pageNum, sortOrder, []);
+        setTotalPages(Math.ceil(data.totalBooks / pageSize));
         setBooks(data.books);
       } catch (error) {
         setError((error as Error).message);
@@ -26,7 +27,7 @@ const AdminBooksPage = () => {
       }
     };
     loadBooks();
-  }, [pageSize]);
+  }, [pageSize, pageNum, sortOrder]);
 
   if (loading) return <p>Loading projects...</p>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
@@ -34,8 +35,8 @@ const AdminBooksPage = () => {
   return (
     <div>
       <h1>Admin - Books</h1>
-      <table>
-        <thead>
+      <table className="table table-bordered table-striped">
+        <thead className="table-dark">
           <tr>
             <th>ID</th>
             <th>Title</th>
@@ -46,11 +47,13 @@ const AdminBooksPage = () => {
             <th>Category</th>
             <th>Page Count</th>
             <th>Price</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {books.map((b) => (
             <tr key={b.bookID}>
+              <td>{b.bookID}</td>
               <td>{b.title}</td>
               <td>{b.author}</td>
               <td>{b.publisher}</td>
@@ -60,10 +63,16 @@ const AdminBooksPage = () => {
               <td>{b.pageCount}</td>
               <td>{b.price}</td>
               <td>
-                <button onClick={() => console.log(`Edit book ${b.bookID}`)}>
+                <button
+                  className="btn btn-primary btn-sm w-100 mb-1"
+                  onClick={() => console.log(`Edit book ${b.bookID}`)}
+                >
                   Edit
                 </button>
-                <button onClick={() => console.log(`Delete book ${b.bookID}`)}>
+                <button
+                  className="btn btn-danger btn-sm w-100"
+                  onClick={() => console.log(`Delete book ${b.bookID}`)}
+                >
                   Delete
                 </button>
               </td>
