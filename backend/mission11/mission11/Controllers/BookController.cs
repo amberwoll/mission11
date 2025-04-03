@@ -49,7 +49,7 @@ namespace mission11.Controllers
 
             return Ok(new
             {
-                books = bookList,
+                Books = bookList,
                 TotalBooks = totalBooks
             });
         }
@@ -65,5 +65,48 @@ namespace mission11.Controllers
 
 
         }
+
+        [HttpPost("AddBook")]
+        public IActionResult AddBook([FromBody] Book newBook)
+        {
+            _bookContext.Books.Add(newBook);
+            _bookContext.SaveChanges();
+            return Ok(newBook);
+        }
+
+        [HttpPut("UpdateBook/{bookId}")]
+        public IActionResult UpdateBook(int bookId, [FromBody] Book updatedBook)
+        {
+            var existingBook = _bookContext.Books.Find(bookId);
+            existingBook.Title = updatedBook.Title;
+            existingBook.Category = updatedBook.Category;
+            existingBook.Price = updatedBook.Price;
+            existingBook.Author = updatedBook.Author;
+            existingBook.Price = updatedBook.Price;
+            existingBook.Publisher = updatedBook.Publisher;
+            existingBook.Classification = updatedBook.Classification;
+            existingBook.PageCount = updatedBook.PageCount;
+            existingBook.ISBN = updatedBook.ISBN;
+            _bookContext.Books.Update(existingBook);
+            _bookContext.SaveChanges();
+            
+            return Ok(existingBook);
+        }
+
+        [HttpDelete("DeleteBook/{bookId}")]
+        public IActionResult DeleteBook(int bookId)
+        {
+            var book = _bookContext.Books.Find(bookId);
+
+            if (book == null)
+            {
+                return NotFound(new { message = "Book not found." });
+            }
+            
+            _bookContext.Books.Remove(book);
+            _bookContext.SaveChanges();
+            return NoContent();
+        }
     }
-}
+}   
+    
