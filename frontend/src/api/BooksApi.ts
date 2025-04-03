@@ -2,7 +2,7 @@ import { book } from '../types/book';
 
 interface FetchBooksResponse {
   books: book[];
-  totalNumBooks: number;
+  totalBooks: number; // <-- Match the API's response
 }
 
 export const fetchBooks = async (
@@ -21,12 +21,12 @@ export const fetchBooks = async (
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error('Failed to fetch prohects');
+      throw new Error('Failed to fetch books');
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Error fetching projects', error);
+    console.error('Error fetching books', error);
     throw error;
   }
 };

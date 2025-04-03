@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { book } from '../types/book';
 import { useNavigate } from 'react-router-dom';
 import { fetchBooks } from '../api/BooksAPI';
+import Pagination from './Pagination';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<book[]>([]);
@@ -23,9 +24,8 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           sortOrder,
           selectedCategories
         );
-
         setBooks(data.books);
-        setTotalPages(Math.ceil(data.totalNumBooks / pageSize));
+        setTotalPages(Math.ceil(data.totalBooks / pageSize));
       } catch (error) {
         setError((error as Error).message);
       } finally {
@@ -81,41 +81,16 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           </div>
         </div>
       ))}
-
-      <br />
-      <label>Results per page: </label>
-      <select
-        value={pageSize}
-        onChange={(p) => {
-          setPageSize(Number(p.target.value));
+      <Pagination
+        currentPage={pageNum}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        onPageChange={setPageNum}
+        onPageSizeChange={(newSize) => {
+          setPageSize(newSize);
           setPageNum(1);
         }}
-      >
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-      </select>
-
-      <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
-        Previous
-      </button>
-
-      {[...Array(totalPages)].map((_, i) => (
-        <button
-          key={i + 1}
-          onClick={() => setPageNum(i + 1)}
-          disabled={pageNum === i + 1}
-        >
-          {i + 1}
-        </button>
-      ))}
-
-      <button
-        disabled={pageNum === totalPages}
-        onClick={() => setPageNum(pageNum + 1)}
-      >
-        Next
-      </button>
+      />
     </>
   );
 }
