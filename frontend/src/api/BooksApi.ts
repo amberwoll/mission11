@@ -73,3 +73,18 @@ export const updateBook = async (
     throw error;
   }
 };
+
+export const deleteBook = async (bookId: number): Promise<void> => {
+  try {
+    const response = await fetch(`${API_URL}/DeleteBook/${bookId}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete book');
+    }
+  } catch (error) {
+    console.error('Error deleting books:', error);
+    throw error;
+  }
+};

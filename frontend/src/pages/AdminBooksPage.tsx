@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { book } from '../types/book';
-import { fetchBooks } from '../api/BooksAPI';
+import { deleteBook, fetchBooks } from '../api/BooksAPI';
 import Pagination from '../components/Pagination';
 import NewBookForm from '../components/NewBookForm';
 import EditBookForm from '../components/EditBookForm';
@@ -31,6 +31,20 @@ const AdminBooksPage = () => {
     };
     loadBooks();
   }, [pageSize, pageNum, sortOrder]);
+
+  const handleDelete = async (bookId: number) => {
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete this book?'
+    );
+    if (!confirmDelete) return;
+
+    try {
+      await deleteBook(bookId);
+      setBooks(books.filter((b) => b.bookID !== bookId));
+    } catch (error) {
+      alert('Failed to delete book. Please try again');
+    }
+  };
 
   if (loading) return <p>Loading projects...</p>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
@@ -109,7 +123,7 @@ const AdminBooksPage = () => {
                 </button>
                 <button
                   className="btn btn-danger btn-sm w-100"
-                  onClick={() => console.log(`Delete book ${b.bookID}`)}
+                  onClick={() => handleDelete(b.bookID)}
                 >
                   Delete
                 </button>
