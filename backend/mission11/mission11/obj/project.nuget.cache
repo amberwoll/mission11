@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S4P7aiVA/9o=",
+  "dgSpecHash": "AXNM7A+jikQ=",
   "success": true,
-  "projectFilePath": "/Users/amberwoll/Documents/GitHub/mission11/backend/mission11/mission11/mission11.csproj",
+  "projectFilePath": "/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/mission11.csproj",
   "expectedPackageFiles": [
     "/Users/amberwoll/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/amberwoll/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
@@ -54,10 +54,7 @@
     "/Users/amberwoll/.nuget/packages/system.reflection.metadata/6.0.1/system.reflection.metadata.6.0.1.nupkg.sha512",
     "/Users/amberwoll/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/amberwoll/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512",
-    "/Users/amberwoll/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512",
-    "/Users/amberwoll/.nuget/packages/microsoft.netcore.app.ref/8.0.12/microsoft.netcore.app.ref.8.0.12.nupkg.sha512",
-    "/Users/amberwoll/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.12/microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512",
-    "/Users/amberwoll/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.12/microsoft.netcore.app.host.osx-arm64.8.0.12.nupkg.sha512"
+    "/Users/amberwoll/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

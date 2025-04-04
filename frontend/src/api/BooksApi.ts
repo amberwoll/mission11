@@ -5,6 +5,8 @@ interface FetchBooksResponse {
   totalBooks: number; // <-- Match the API's response
 }
 
+const API_URL = `https://localhost:7000/Book`;
+
 export const fetchBooks = async (
   pageSize: number,
   pageNum: number,
@@ -16,9 +18,9 @@ export const fetchBooks = async (
       .map((cat) => `bookCats=${encodeURIComponent(cat)}`)
       .join('&');
 
-    const url = `https://localhost:7000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}${selectedCategories.length ? `&${categoryParams}` : ''}`;
-
-    const response = await fetch(url);
+    const response = await fetch(
+      `${API_URL}/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}${selectedCategories.length ? `&${categoryParams}` : ''}`
+    );
 
     if (!response.ok) {
       throw new Error('Failed to fetch books');
@@ -27,6 +29,27 @@ export const fetchBooks = async (
     return await response.json();
   } catch (error) {
     console.error('Error fetching books', error);
+    throw error;
+  }
+};
+
+export const addProject = async (newBook: book): Promise<book> => {
+  // of type project
+  try {
+    const response = await fetch(`${API_URL}/Book/AddBook`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'applications/json',
+      },
+      body: JSON.stringify(newBook),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add book');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error adding book', error);
     throw error;
   }
 };

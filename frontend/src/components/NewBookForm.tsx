@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { book } from '../types/book';
 
-const NewBookForm = () => {
-  const { formData, setFormData } = useState<book>({
+interface NewBookFormProps {
+  onSuccess: () => void;
+  onCancel: () => void;
+}
+
+const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
+  const [formData, setFormData] = useState<book>({
     bookID: 0,
     title: '',
     author: '',
@@ -14,40 +19,100 @@ const NewBookForm = () => {
     price: 0,
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await addBook(formData);
+    onSuccess();
+  };
+
   return (
-    <form action="">
+    <form onSubmit={handleSubmit}>
       <h2>Add New Book</h2>
       <label>
-        Title: <input type="text" />
+        Title:{' '}
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        Project Name: <input type="text" />
+        Author:{' '}
+        <input
+          type="text"
+          name="title"
+          value={formData.author}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        Author: <input type="text" />
+        Publisher:{' '}
+        <input
+          type="text"
+          name="title"
+          value={formData.publisher}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        Publisher: <input type="text" />
+        ISBN:{' '}
+        <input
+          type="text"
+          name="title"
+          value={formData.isbn}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        ISBN: <input type="text" />
+        Classification:{' '}
+        <input
+          type="text"
+          name="title"
+          value={formData.classification}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        Classification: <input type="text" />
+        Category:{' '}
+        <input
+          type="text"
+          name="title"
+          value={formData.category}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        Category: <input type="text" />
+        Page Count:{' '}
+        <input
+          type="number"
+          name="title"
+          value={formData.pageCount}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        Page Count: <input type="text" />
-      </label>
-      <label>
-        Price: <input type="text" />
+        Price:{' '}
+        <input
+          type="number"
+          name="title"
+          value={formData.price}
+          onChange={handleChange}
+        />
       </label>
       <button type="submit">Add Book</button>
-      <button type="button">Cancel</button>
+      <button type="button" onClick={onCancel}>
+        Cancel
+      </button>
     </form>
   );
 };
 
 export default NewBookForm;
+function addBook(formData: any) {
+  throw new Error('Function not implemented.');
+}

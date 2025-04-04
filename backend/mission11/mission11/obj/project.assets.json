@@ -2862,11 +2862,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/amberwoll/Documents/GitHub/mission11/backend/mission11/mission11/mission11.csproj",
+      "projectUniqueName": "/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/mission11.csproj",
       "projectName": "mission11",
-      "projectPath": "/Users/amberwoll/Documents/GitHub/mission11/backend/mission11/mission11/mission11.csproj",
+      "projectPath": "/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/mission11.csproj",
       "packagesPath": "/Users/amberwoll/.nuget/packages/",
-      "outputPath": "/Users/amberwoll/Documents/GitHub/mission11/backend/mission11/mission11/obj/",
+      "outputPath": "/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/amberwoll/.nuget/NuGet/NuGet.Config"
@@ -2892,8 +2892,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -2935,20 +2934,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.12, 8.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.osx-arm64",
-            "version": "[8.0.12, 8.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.12, 8.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2957,7 +2942,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.406/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

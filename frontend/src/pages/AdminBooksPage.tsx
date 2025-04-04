@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { book } from '../types/book';
 import { fetchBooks } from '../api/BooksAPI';
 import Pagination from '../components/Pagination';
+import NewBookForm from '../components/NewBookForm';
 
 const AdminBooksPage = () => {
   const [books, setBooks] = useState<book[]>([]);
@@ -13,6 +14,7 @@ const AdminBooksPage = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const loadBooks = async () => {
@@ -35,6 +37,28 @@ const AdminBooksPage = () => {
   return (
     <div>
       <h1>Admin - Books</h1>
+
+      {!showForm && (
+        <button
+          className="btn btn-success mb-3"
+          onClick={() => setShowForm(true)}
+        >
+          Add Project
+        </button>
+      )}
+
+      {showForm && (
+        <NewBookForm
+          onSuccess={() => {
+            setShowForm(false);
+            fetchBooks(pageSize, pageNum, sortOrder, []).then((data) =>
+              setBooks(data.books)
+            );
+          }}
+          onCancel={() => setShowForm(false)}
+        />
+      )}
+
       <table className="table table-bordered table-striped">
         <thead className="table-dark">
           <tr>
