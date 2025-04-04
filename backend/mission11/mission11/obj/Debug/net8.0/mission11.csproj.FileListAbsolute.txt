@@ -132,3 +132,4 @@
 /Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/obj/Debug/net8.0/mission11.pdb
 /Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/obj/Debug/net8.0/mission11.genruntimeconfig.cache
 /Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/obj/Debug/net8.0/ref/mission11.dll
+/Users/amberwoll/RiderProjects/mission11/backend/mission11/mission11/bin/Debug/net8.0/Bookstore.sqlite
