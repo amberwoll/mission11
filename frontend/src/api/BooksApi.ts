@@ -33,13 +33,13 @@ export const fetchBooks = async (
   }
 };
 
-export const addProject = async (newBook: book): Promise<book> => {
+export const addBook = async (newBook: book): Promise<book> => {
   // of type project
   try {
-    const response = await fetch(`${API_URL}/Book/AddBook`, {
+    const response = await fetch(`${API_URL}/AddBook`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'applications/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newBook),
     });

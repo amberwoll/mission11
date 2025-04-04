@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { book } from '../types/book';
+import { addBook } from '../api/BooksAPI';
 
 interface NewBookFormProps {
   onSuccess: () => void;
@@ -45,7 +46,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
         Author:{' '}
         <input
           type="text"
-          name="title"
+          name="author"
           value={formData.author}
           onChange={handleChange}
         />
@@ -54,7 +55,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
         Publisher:{' '}
         <input
           type="text"
-          name="title"
+          name="publisher"
           value={formData.publisher}
           onChange={handleChange}
         />
@@ -63,7 +64,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
         ISBN:{' '}
         <input
           type="text"
-          name="title"
+          name="isbn"
           value={formData.isbn}
           onChange={handleChange}
         />
@@ -72,7 +73,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
         Classification:{' '}
         <input
           type="text"
-          name="title"
+          name="classification"
           value={formData.classification}
           onChange={handleChange}
         />
@@ -81,7 +82,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
         Category:{' '}
         <input
           type="text"
-          name="title"
+          name="category"
           value={formData.category}
           onChange={handleChange}
         />
@@ -90,7 +91,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
         Page Count:{' '}
         <input
           type="number"
-          name="title"
+          name="pageCount"
           value={formData.pageCount}
           onChange={handleChange}
         />
@@ -99,7 +100,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
         Price:{' '}
         <input
           type="number"
-          name="title"
+          name="price"
           value={formData.price}
           onChange={handleChange}
         />
@@ -113,6 +114,3 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
 };
 
 export default NewBookForm;
-function addBook(formData: any) {
-  throw new Error('Function not implemented.');
-}
