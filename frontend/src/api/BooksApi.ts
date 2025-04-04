@@ -34,7 +34,7 @@ export const fetchBooks = async (
 };
 
 export const addBook = async (newBook: book): Promise<book> => {
-  // of type project
+  // of type book
   try {
     const response = await fetch(`${API_URL}/AddBook`, {
       method: 'POST',
