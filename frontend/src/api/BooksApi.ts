@@ -53,3 +53,23 @@ export const addBook = async (newBook: book): Promise<book> => {
     throw error;
   }
 };
+
+export const updateBook = async (
+  bookId: number,
+  updatedBook: book
+): Promise<book> => {
+  try {
+    const response = await fetch(`${API_URL}/UpdateBook/${bookId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedBook),
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error updating book:', error);
+    throw error;
+  }
+};
