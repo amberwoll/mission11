@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { book } from '../types/book';
-import { updateBook } from '../api/BooksAPI';
+import { updateBook } from '../api/BooksApi';
 
 interface EditBookFormProps {
   book: book;
